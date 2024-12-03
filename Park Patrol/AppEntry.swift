@@ -1,19 +1,20 @@
 //
-//  Park_PatrolApp.swift
+//  ParkPatrolApp.swift
 //  Park Patrol
 //
 //  Created by Hector Mojica on 11/27/24.
 //
 
+
 import SwiftUI
 
 @main
-struct Park_PatrolApp: App {
+struct ParkPatrolApp: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
