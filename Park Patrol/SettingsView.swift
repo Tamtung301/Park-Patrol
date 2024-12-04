@@ -15,15 +15,18 @@ struct SettingsView: View {
 
             Form {
                 Section(header: Text("Appearance")) {
-                    Picker("Theme", selection: $theme) {
+                    Picker("Theme", selection: Binding(
+                        get: { theme },
+                        set: { newTheme in
+                            theme = newTheme
+                            applyTheme(newTheme)
+                        }
+                    )) {
                         Text("Light").tag(Theme.light)
                         Text("Dark").tag(Theme.dark)
                         Text("System Default").tag(Theme.system)
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                    .onChange(of: theme) { newTheme, _ in
-                        applyTheme(newTheme)
-                    }
                 }
 
                 Section(header: Text("Notifications")) {
@@ -40,9 +43,9 @@ struct SettingsView: View {
            let keyWindow = windowScene.windows.first(where: { $0.isKeyWindow }) {
             switch theme {
             case .light:
-                keyWindow.overrideUserInterfaceStyle = .light  // Fixed
+                keyWindow.overrideUserInterfaceStyle = .light
             case .dark:
-                keyWindow.overrideUserInterfaceStyle = .dark   // Fixed
+                keyWindow.overrideUserInterfaceStyle = .dark
             case .system:
                 keyWindow.overrideUserInterfaceStyle = .unspecified
             }
@@ -52,6 +55,6 @@ struct SettingsView: View {
 
 enum Theme: String, CaseIterable, Identifiable {
     case light, dark, system
-
+    
     var id: String { rawValue }
 }
