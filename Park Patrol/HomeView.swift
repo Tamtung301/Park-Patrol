@@ -32,7 +32,7 @@ struct HomeView: View {
     @State private var coordinatesText = ""
     /// User's profile image
     @State private var profileImage: UIImage?
-    
+
     // MARK: - Environment
     /// Core Data managed object context
     @Environment(\.managedObjectContext) private var viewContext
@@ -112,20 +112,14 @@ struct HomeView: View {
                 }
 
                 // MARK: - Navigation Links
-                NavigationLink(value: selectedOption) {
-                    EmptyView()
-                }
-                .navigationDestination(for: MenuOption.self) { option in
-                    switch option {
-                    case .settings:
-                        SettingsView()
-                    case .about:
-                        AboutView()
-                    case .home:
-                        EmptyView()
-                    }
-                }
-                .hidden()
+                NavigationLink(destination: SettingsView(), tag: .settings, selection: $selectedOption) {
+                                    SettingsView()
+                                }
+                                .hidden()
+                                NavigationLink(destination: AboutView(), tag: .about, selection: $selectedOption) {
+                                    AboutView()
+                                }
+                                .hidden()
 
                 // MARK: - Alert Confirmation
                 if isAlertSent {
@@ -157,7 +151,7 @@ struct HomeView: View {
                             .imageScale(.large)
                     }
                 }
-                
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: AvatarView(profileImage: $profileImage)) {
                         if let image = profileImage {

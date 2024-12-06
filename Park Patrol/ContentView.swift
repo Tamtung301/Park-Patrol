@@ -14,7 +14,7 @@ import SwiftUI
 /// sorted by timestamp in descending order (most recent first)
 struct ContentView: View {
     // MARK: - Properties
-    
+
     /// Core Data fetch request to retrieve all reports
     /// - Fetches from Report entity
     /// - Sorts by timestamp in descending order
@@ -36,7 +36,7 @@ struct ContentView: View {
                     // Location coordinates display
                     Text("Location: \(report.latitude), \(report.longitude)")
                         .font(.headline)
-                    
+
                     // Timestamp display with formatted date
                     Text("Timestamp: \(report.timestamp ?? Date(), formatter: DateFormatter.shortDate)")
                         .font(.subheadline)

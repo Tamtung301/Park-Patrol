@@ -13,11 +13,11 @@ import SwiftUI
 /// and core features. It includes a description, feature list, and navigation controls.
 struct AboutView: View {
     // MARK: - Properties
-    
+
     /// Environment variable that enables programmatic view dismissal
     /// Used when returning to the previous screen via the "Get Started" button
     @Environment(\.dismiss) private var dismiss
-    
+
     // MARK: - View Body
     var body: some View {
         // Enables scrolling for content overflow
@@ -31,7 +31,7 @@ struct AboutView: View {
                     Image(systemName: "car.2.fill")
                         .font(.largeTitle)
                         .foregroundColor(.blue)
-                    
+
                     // App name in prominent display
                     Text("About Park Patrol")
                         .font(.largeTitle)
@@ -58,7 +58,7 @@ struct AboutView: View {
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
-                    
+
                     // Stay Alert: Second main feature
                     HStack {
                         Image(systemName: "bell.fill")
@@ -67,7 +67,7 @@ struct AboutView: View {
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
-                    
+
                     // Find Safer Spots: Third main feature
                     HStack {
                         Image(systemName: "map.fill")

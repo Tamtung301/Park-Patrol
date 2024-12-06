@@ -87,7 +87,7 @@ enum Theme: String, CaseIterable, Identifiable {
     case dark
     /// System default theme
     case system
-    
+
     /// Unique identifier for each theme option
     var id: String { rawValue }
 }
