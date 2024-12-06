@@ -2,20 +2,37 @@
 //  AboutView.swift
 //  Park Patrol
 //
-//  Created by Hector Mojica on 11/27/24.
+//  Created by Daniel Wright & Hector Mojica.
 //
+//  This view provides information about the Park Patrol app to users,
+//  explaining its purpose, features, and basic usage instructions.
 
 import SwiftUI
 
+/// AboutView serves as an informational screen that introduces users to the app's functionality
+/// and core features. It includes a description, feature list, and navigation controls.
 struct AboutView: View {
+    // MARK: - Properties
+    
+    /// Environment variable that enables programmatic view dismissal
+    /// Used when returning to the previous screen via the "Get Started" button
+    @Environment(\.dismiss) private var dismiss
+    
+    // MARK: - View Body
     var body: some View {
+        // Enables scrolling for content overflow
         ScrollView {
+            // Main content container with consistent spacing
             VStack(alignment: .leading, spacing: 20) {
-                // Title with Icon
+                // MARK: - Header Section
+                // App title with themed icon for visual appeal
                 HStack {
+                    // Car icon represents the parking-related functionality
                     Image(systemName: "car.2.fill")
                         .font(.largeTitle)
                         .foregroundColor(.blue)
+                    
+                    // App name in prominent display
                     Text("About Park Patrol")
                         .font(.largeTitle)
                         .fontWeight(.bold)
@@ -23,14 +40,17 @@ struct AboutView: View {
                 }
                 .padding(.bottom, 10)
 
-                // Description
+                // MARK: - Description Section
+                // Detailed explanation of the app's purpose and basic usage
                 Text("Park Patrol is your go-to app for reporting and staying informed about parking issues on and around CSUF's campus. Use our app to be aware of parking patrollers, and park smart, saving yourself from tickets and fines. \n\nTap anywhere on the map to select a location, and then share your findings with the community!")
                     .font(.body)
                     .foregroundColor(.secondary)
                     .padding(.bottom, 20)
 
-                // Features List
+                // MARK: - Features List
+                // Visual presentation of key features with icons and descriptions
                 VStack(alignment: .leading, spacing: 10) {
+                    // Report Patrollers: First main feature
                     HStack {
                         Image(systemName: "exclamationmark.triangle.fill")
                             .foregroundColor(.blue)
@@ -38,6 +58,8 @@ struct AboutView: View {
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
+                    
+                    // Stay Alert: Second main feature
                     HStack {
                         Image(systemName: "bell.fill")
                             .foregroundColor(.blue)
@@ -45,6 +67,8 @@ struct AboutView: View {
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
+                    
+                    // Find Safer Spots: Third main feature
                     HStack {
                         Image(systemName: "map.fill")
                             .foregroundColor(.blue)
@@ -55,10 +79,16 @@ struct AboutView: View {
                 }
                 .padding(.vertical)
 
+                // Flexible spacing to push button to bottom
                 Spacer()
 
-                // Navigation Button to HomeView
-                NavigationLink(destination: HomeView()) {
+                // MARK: - Navigation
+                // Call-to-action button that returns user to main interface
+                Button(action: {
+                    // Dismisses the about view and returns to previous screen
+                    dismiss()
+                }) {
+                    // Styled button with consistent app theming
                     Text("Get Started!")
                         .bold()
                         .frame(maxWidth: .infinity)
@@ -69,8 +99,8 @@ struct AboutView: View {
                 }
                 .padding(.bottom, 20)
             }
+            // Overall content padding
             .padding()
         }
     }
 }
-

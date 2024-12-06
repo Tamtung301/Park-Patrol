@@ -1,3 +1,10 @@
+//
+// PersistenceController.swift
+//  Park Patrol
+//
+//  Created by Daniel Wright & Hector Mojica.
+//
+
 import CoreData
 
 struct PersistenceController {
@@ -6,7 +13,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "ParkPatrol") // Ensure this matches your .xcdatamodeld file name
+        container = NSPersistentContainer(name: "ParkPatrol")
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
